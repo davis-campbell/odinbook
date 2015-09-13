@@ -1,0 +1,7 @@
+<h2>Welcome to Odinbook!</h2>
+<% current_user.received_requests.each do |request| %>
+  <p>User <%= request.requester_id %> added you!</p><br>
+  <%= link_to "Accept request" %>
+  <%= link_to "Reject request", url_for(request), method: :delete %><br>
+<% end %>
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>

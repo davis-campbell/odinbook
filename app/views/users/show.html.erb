@@ -1,0 +1,12 @@
+<h2>ID: <%= @user.id %></h2>
+<% if current_user.friends.include?(@user) %>
+  <h3>You are friends!</h3>
+<% elsif current_user.requested.include?(@user) %>
+  <p>Request sent</p>
+<% else %>
+  <%= form_for @request do |f| %>
+    <%= f.text_field :requester_id, value: current_user.id, type: 'hidden' %>
+    <%= f.text_field :requested_id, value: @user.id, type: 'hidden' %>
+    <%= f.submit "Add friend" %>
+  <% end %>
+<% end %>
